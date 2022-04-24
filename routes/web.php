@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Livewire\ShowPosts;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,9 +14,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
+Route::get('/', ShowPosts::class);
+
+
 
 Route::middleware([
     'auth:sanctum',
