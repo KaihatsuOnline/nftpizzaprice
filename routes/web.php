@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Livewire\Post\PostSearch;
 use App\Http\Livewire\ShowPosts;
 use Illuminate\Support\Facades\Route;
 
@@ -16,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/', ShowPosts::class);
-
+Route::get('/search-posts', PostSearch::class);
 
 
 Route::middleware([

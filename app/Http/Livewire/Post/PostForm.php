@@ -12,6 +12,12 @@ class PostForm extends Component
     public $content;
 
 
+    // protected $rules = [
+    //     Post::COL_TITLE => ['required', 'string', 'min:3'],
+    //     Post::COL_CONTENT => ['string'],
+    // ];
+
+
     /**
      * Validation rules.
      */
@@ -19,8 +25,14 @@ class PostForm extends Component
     {
         return [
             Post::COL_TITLE => ['required', 'string', 'min:3'],
-            Post::COL_CONTENT => ['string'],
+            Post::COL_CONTENT => ['required', 'string'],
         ];
+    }
+
+
+    public function updated($propertyName)
+    {
+        $this->validateOnly($propertyName);
     }
 
 
@@ -39,13 +51,15 @@ class PostForm extends Component
     public function store()
     {
 
-        $this->validate();
+        $validatedData = $this->validate();
 
 
-        Post::create([
-            Post::COL_TITLE => $this->title,
-            Post::COL_CONTENT => $this->content,
-        ]);
+        // Post::create([
+        //     Post::COL_TITLE => $this->title,
+        //     Post::COL_CONTENT => $this->content,
+        // ]);
+
+        Post::create($validatedData);
 
 
         $this->reset();
